@@ -11,7 +11,9 @@ import {
   TrendingUp, 
   Zap,
   CheckCircle2,
-  Calendar
+  Calendar,
+  Activity,
+  Shield
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
