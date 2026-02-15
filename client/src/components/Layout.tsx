@@ -66,11 +66,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {user && (
           <div className="flex items-center gap-3 px-3 py-3 mb-4 rounded-xl bg-background/50 border border-border/30">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-blue-500/20 flex items-center justify-center text-primary font-bold overflow-hidden border border-primary/20 shrink-0">
-               {user.profileImageUrl ? (
-                 <img src={user.profileImageUrl} alt="Profile" className="w-full h-full object-cover" />
-               ) : (
-                 <User className="w-5 h-5" />
-               )}
+               <User className="w-5 h-5" />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-bold truncate text-foreground/90">{user.firstName || 'Student'}</p>
@@ -78,14 +74,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
         )}
-        <Button 
-          variant="ghost" 
-          className="w-full justify-start gap-3 rounded-xl text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-all font-medium"
-          onClick={() => logout()}
-        >
-          <LogOut className="w-4 h-4" />
-          Sign Out
-        </Button>
       </div>
     </div>
   );

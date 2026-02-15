@@ -23,25 +23,18 @@ async function logout(): Promise<void> {
 
 export function useAuth() {
   const queryClient = useQueryClient();
-  const { data: user, isLoading } = useQuery<User | null>({
-    queryKey: ["/api/auth/user"],
-    queryFn: fetchUser,
-    retry: false,
-    staleTime: 1000 * 60 * 5, // 5 minutes
-  });
-
-  const logoutMutation = useMutation({
-    mutationFn: logout,
-    onSuccess: () => {
-      queryClient.setQueryData(["/api/auth/user"], null);
-    },
-  });
-
+  const user = {
+    id: "default-user",
+    username: "student",
+    firstName: "Student",
+    email: "student@burnoutiq.app"
+  };
+  
   return {
     user,
-    isLoading,
-    isAuthenticated: !!user,
-    logout: logoutMutation.mutate,
-    isLoggingOut: logoutMutation.isPending,
+    isLoading: false,
+    isAuthenticated: true,
+    logout: () => {},
+    isLoggingOut: false,
   };
 }

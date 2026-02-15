@@ -36,40 +36,24 @@ function PrivateRoute({ component: Component }: { component: React.ComponentType
 }
 
 function Router() {
-  const { user, isLoading } = useAuth();
-
-  if (isLoading) {
-    return (
-      <div className="h-screen w-full flex items-center justify-center bg-background">
-        <Loader2 className="w-10 h-10 animate-spin text-primary" />
-      </div>
-    );
-  }
-
   return (
     <Switch>
-      {/* Public Routes */}
-      <Route path="/landing">
-        {user ? <Redirect to="/" /> : <Landing />}
-      </Route>
-
-      {/* Protected Routes */}
       <Route path="/">
-        {user ? (
-          <Layout>
-            <Dashboard />
-          </Layout>
-        ) : (
-          <Redirect to="/landing" />
-        )}
+        <Layout>
+          <Dashboard />
+        </Layout>
       </Route>
 
       <Route path="/log">
-        <PrivateRoute component={LogEntry} />
+        <Layout>
+          <LogEntry />
+        </Layout>
       </Route>
 
       <Route path="/history">
-        <PrivateRoute component={History} />
+        <Layout>
+          <History />
+        </Layout>
       </Route>
 
       {/* Fallback */}

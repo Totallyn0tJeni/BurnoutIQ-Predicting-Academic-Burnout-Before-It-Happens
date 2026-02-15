@@ -82,20 +82,15 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  // Setup Auth
-  await setupAuth(app);
-  registerAuthRoutes(app);
-
   // === API Routes ===
 
   // Create Log
-  app.post(api.logs.create.path, isAuthenticated, async (req, res) => {
+  app.post(api.logs.create.path, async (req, res) => {
     try {
-      // Coerce numeric strings to numbers if needed (though Zod handles JSON numbers fine)
       const input = api.logs.create.input.parse(req.body);
       
       const { score, risk } = calculateBurnout(input);
-      const userId = (req.user as any).claims.sub;
+      const userId = "default-user";
 
       const log = await storage.createDailyLog(userId, input, { 
         burnoutScore: score, 
@@ -115,22 +110,22 @@ export async function registerRoutes(
   });
 
   // List Logs
-  app.get(api.logs.list.path, isAuthenticated, async (req, res) => {
-    const userId = (req.user as any).claims.sub;
+  app.get(api.logs.list.path, async (req, res) => {
+    const userId = "default-user";
     const logs = await storage.getDailyLogs(userId);
     res.json(logs);
   });
 
   // Get Stats
-  app.get(api.stats.get.path, isAuthenticated, async (req, res) => {
-    const userId = (req.user as any).claims.sub;
+  app.get(api.stats.get.path, async (req, res) => {
+    const userId = "default-user";
     const stats = await storage.getStats(userId);
     res.json(stats);
   });
 
   // Get Interventions (based on latest log)
-  app.get(api.interventions.get.path, isAuthenticated, async (req, res) => {
-    const userId = (req.user as any).claims.sub;
+  app.get(api.interventions.get.path, async (req, res) => {
+    const userId = "default-user";
     const logs = await storage.getDailyLogs(userId);
     const latestLog = logs[0];
 
@@ -144,8 +139,8 @@ export async function registerRoutes(
 
   // Seed Data (Development Only)
   if (process.env.NODE_ENV === "development") {
-    app.post("/api/seed", isAuthenticated, async (req, res) => {
-      const userId = (req.user as any).claims.sub;
+    app.post("/api/seed", async (req, res) => {
+      const userId = "default-user";
       const logs = await storage.getDailyLogs(userId);
       if (logs.length > 0) {
         return res.json({ message: "Data already exists" });
