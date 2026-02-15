@@ -97,36 +97,43 @@ export default function Dashboard() {
 
       {/* Quick Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-card p-6 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center">
-          <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center mb-3">
+        <div className="bg-white dark:bg-card p-6 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+          <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
             <CheckCircle2 className="w-5 h-5" />
           </div>
-          <p className="text-3xl font-bold">{stats?.currentStreak || 0}</p>
-          <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider mt-1">Day Streak</p>
+          <p className="text-3xl font-bold tracking-tight">{stats?.currentStreak || 0}</p>
+          <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mt-1">Day Streak</p>
         </div>
         
-        <div className="bg-white dark:bg-card p-6 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center">
-          <div className="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 flex items-center justify-center mb-3">
+        <div className="bg-white dark:bg-card p-6 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+          <div className="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
             <Moon className="w-5 h-5" />
           </div>
-          <p className="text-3xl font-bold">{stats?.averageSleep || 0}h</p>
-          <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider mt-1">Avg Sleep</p>
+          <p className="text-3xl font-bold tracking-tight">{stats?.averageSleep || 0}h</p>
+          <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mt-1">Avg Sleep</p>
         </div>
 
-        <div className="bg-white dark:bg-card p-6 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center">
-          <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 flex items-center justify-center mb-3">
+        <div className="bg-white dark:bg-card p-6 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+          <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
             <BookOpen className="w-5 h-5" />
           </div>
-          <p className="text-3xl font-bold">4.2h</p>
-          <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider mt-1">Study / Day</p>
+          <p className="text-3xl font-bold tracking-tight">
+            {logs && logs.length > 0 ? (logs.reduce((acc, l) => acc + Number(l.hoursStudied), 0) / logs.length).toFixed(1) : "0"}h
+          </p>
+          <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mt-1">Study / Day</p>
         </div>
 
-        <div className="bg-white dark:bg-card p-6 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center">
-          <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center mb-3">
+        <div className="bg-white dark:bg-card p-6 rounded-2xl border border-border/50 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+          <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
             <Activity className="w-5 h-5" />
           </div>
-          <p className="text-3xl font-bold text-green-600">Low</p>
-          <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider mt-1">Risk Level</p>
+          <p className={cn(
+            "text-3xl font-bold tracking-tight",
+            (stats?.averageBurnoutScore || 0) > 60 ? "text-destructive" : (stats?.averageBurnoutScore || 0) > 30 ? "text-yellow-600" : "text-green-600"
+          )}>
+            {(stats?.averageBurnoutScore || 0) > 60 ? "High" : (stats?.averageBurnoutScore || 0) > 30 ? "Moderate" : "Low"}
+          </p>
+          <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mt-1">Risk Level</p>
         </div>
       </div>
 
@@ -161,8 +168,8 @@ export default function Dashboard() {
                   </span>
                 )}
               </div>
-              <h4 className="font-bold text-lg mb-2">{item.title}</h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+              <h4 className="font-bold text-lg mb-2 text-foreground/90">{item.title}</h4>
+              <p className="text-muted-foreground text-sm leading-relaxed font-medium">{item.description}</p>
             </motion.div>
           ))}
           

@@ -18,11 +18,11 @@ export default function Landing() {
           </div>
           <span className="font-bold text-xl tracking-tight">BurnoutIQ</span>
         </div>
-        <Link href="/api/login">
+        <a href="/api/login">
           <Button variant="ghost" className="font-medium hover:bg-primary/5 hover:text-primary">
             Sign In
           </Button>
-        </Link>
+        </a>
       </nav>
 
       {/* Hero */}
@@ -53,12 +53,12 @@ export default function Landing() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
           >
-            <Link href="/api/login">
+            <a href="/api/login">
               <Button size="lg" className="rounded-full px-8 h-14 text-lg shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all hover:-translate-y-1">
                 Get Started Analysis
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </div>
 

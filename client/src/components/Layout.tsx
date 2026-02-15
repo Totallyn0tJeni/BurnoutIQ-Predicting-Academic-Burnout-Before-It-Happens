@@ -62,10 +62,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         })}
       </nav>
 
-      <div className="p-4 border-t border-border/50 bg-muted/20">
+      <div className="p-4 border-t border-border/50 bg-muted/5 backdrop-blur-sm">
         {user && (
-          <div className="flex items-center gap-3 px-2 mb-4">
-            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold overflow-hidden border-2 border-primary/20">
+          <div className="flex items-center gap-3 px-3 py-3 mb-4 rounded-xl bg-background/50 border border-border/30">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-blue-500/20 flex items-center justify-center text-primary font-bold overflow-hidden border border-primary/20 shrink-0">
                {user.profileImageUrl ? (
                  <img src={user.profileImageUrl} alt="Profile" className="w-full h-full object-cover" />
                ) : (
@@ -73,14 +73,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                )}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold truncate">{user.firstName || 'Student'}</p>
-              <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+              <p className="text-sm font-bold truncate text-foreground/90">{user.firstName || 'Student'}</p>
+              <p className="text-[10px] text-muted-foreground font-medium truncate uppercase tracking-tight">{user.email}</p>
             </div>
           </div>
         )}
         <Button 
-          variant="outline" 
-          className="w-full justify-start gap-2 text-destructive hover:text-destructive hover:bg-destructive/10 border-destructive/20 hover:border-destructive/30"
+          variant="ghost" 
+          className="w-full justify-start gap-3 rounded-xl text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-all font-medium"
           onClick={() => logout()}
         >
           <LogOut className="w-4 h-4" />
