@@ -18,13 +18,13 @@ export default function Landing() {
           </div>
           <span className="font-bold text-xl tracking-tight">BurnoutIQ</span>
         </div>
-        <a href="/api/login">
+        <Link href="/">
           <Button variant="ghost" className="font-medium hover:bg-primary/5 hover:text-primary">
-            Sign In
+            Enter App
           </Button>
-        </a>
+        </Link>
       </nav>
-
+      
       {/* Hero */}
       <main className="flex-1 container mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-24 relative z-10">
         <div className="lg:w-1/2 space-y-8 text-center lg:text-left">
@@ -53,12 +53,12 @@ export default function Landing() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
           >
-            <a href="/api/login">
+            <Link href="/">
               <Button size="lg" className="rounded-full px-8 h-14 text-lg shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all hover:-translate-y-1">
-                Get Started Analysis
+                Get Started
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-            </a>
+            </Link>
           </motion.div>
         </div>
 

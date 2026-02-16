@@ -27,6 +27,10 @@ export class DatabaseStorage implements IStorage {
   async createDailyLog(userId: string, log: InsertDailyLog, calculated: { burnoutScore: number; riskLevel: string }): Promise<DailyLog> {
     const [newLog] = await db.insert(dailyLogs).values({
       ...log,
+      hoursStudied: log.hoursStudied.toString(),
+      sleepHours: log.sleepHours.toString(),
+      extracurricularHours: log.extracurricularHours.toString(),
+      screenTime: log.screenTime?.toString(),
       userId,
       burnoutScore: calculated.burnoutScore,
       riskLevel: calculated.riskLevel,
