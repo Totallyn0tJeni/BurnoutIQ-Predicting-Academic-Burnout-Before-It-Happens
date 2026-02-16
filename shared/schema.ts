@@ -20,6 +20,7 @@ export const dailyLogs = pgTable("daily_logs", {
   moodRating: integer("mood_rating").notNull(), // 1-10
   extracurricularHours: numeric("extracurricular_hours").notNull(),
   screenTime: numeric("screen_time"), // Optional
+  journalEntry: text("journal_entry"), // New field
   
   // Calculated fields
   burnoutScore: integer("burnout_score").notNull(),
@@ -54,6 +55,7 @@ export const insertDailyLogSchema = createInsertSchema(dailyLogs).omit({
   moodRating: z.number().min(1).max(10),
   extracurricularHours: z.number().min(0).max(24),
   screenTime: z.number().min(0).max(24).optional(),
+  journalEntry: z.string().optional(),
 });
 
 // === EXPLICIT API CONTRACT TYPES ===

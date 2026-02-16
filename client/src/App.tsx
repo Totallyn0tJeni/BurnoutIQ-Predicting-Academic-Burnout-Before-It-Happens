@@ -11,6 +11,7 @@ import Dashboard from "@/pages/Dashboard";
 import Landing from "@/pages/Landing";
 import LogEntry from "@/pages/LogEntry";
 import History from "@/pages/History";
+import Journal from "@/pages/Journal";
 import Layout from "@/components/Layout";
 
 function PrivateRoute({ component: Component }: { component: React.ComponentType }) {
@@ -47,6 +48,12 @@ function Router() {
       <Route path="/log">
         <Layout>
           <LogEntry />
+        </Layout>
+      </Route>
+
+      <Route path="/journal">
+        <Layout>
+          <Journal />
         </Layout>
       </Route>
 

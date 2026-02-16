@@ -147,11 +147,11 @@ export async function registerRoutes(
       }
 
       const seedData = [
-        { hoursStudied: 4, assignmentsDue: 2, sleepHours: 7.5, moodRating: 8, extracurricularHours: 1, screenTime: 3 },
-        { hoursStudied: 5, assignmentsDue: 3, sleepHours: 7, moodRating: 7, extracurricularHours: 2, screenTime: 4 },
-        { hoursStudied: 6, assignmentsDue: 4, sleepHours: 6.5, moodRating: 6, extracurricularHours: 1, screenTime: 5 },
-        { hoursStudied: 8, assignmentsDue: 6, sleepHours: 6, moodRating: 5, extracurricularHours: 0, screenTime: 6 },
-        { hoursStudied: 10, assignmentsDue: 8, sleepHours: 5, moodRating: 4, extracurricularHours: 0, screenTime: 7 }, // High burnout
+        { hoursStudied: 4, assignmentsDue: 2, sleepHours: 7.5, moodRating: 8, extracurricularHours: 1, screenTime: 3, journalEntry: "Feeling pretty good today. Got some solid studying done early." },
+        { hoursStudied: 5, assignmentsDue: 3, sleepHours: 7, moodRating: 7, extracurricularHours: 2, screenTime: 4, journalEntry: "A bit busier than yesterday but managing. ECs are fun." },
+        { hoursStudied: 6, assignmentsDue: 4, sleepHours: 6.5, moodRating: 6, extracurricularHours: 1, screenTime: 5, journalEntry: "Stress is picking up. Assignments are starting to pile." },
+        { hoursStudied: 8, assignmentsDue: 6, sleepHours: 6, moodRating: 5, extracurricularHours: 0, screenTime: 6, journalEntry: "Long day in the library. Feeling drained." },
+        { hoursStudied: 10, assignmentsDue: 8, sleepHours: 5, moodRating: 4, extracurricularHours: 0, screenTime: 7, journalEntry: "Pushing through but I'm definitely hitting a wall. Need rest." },
       ];
 
       for (const data of seedData) {

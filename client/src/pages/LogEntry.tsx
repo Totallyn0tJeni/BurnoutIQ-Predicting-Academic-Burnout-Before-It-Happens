@@ -7,6 +7,7 @@ import { insertDailyLogSchema } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { motion } from "framer-motion";
@@ -20,6 +21,7 @@ const formSchema = insertDailyLogSchema.extend({
   moodRating: z.number().min(1).max(10),
   extracurricularHours: z.coerce.number().min(0).max(24),
   screenTime: z.coerce.number().min(0).max(24).optional(),
+  journalEntry: z.string().optional(),
 });
 
 export default function LogEntry() {
@@ -35,6 +37,7 @@ export default function LogEntry() {
       moodRating: 5,
       extracurricularHours: 0,
       screenTime: 0,
+      journalEntry: "",
     },
   });
 
@@ -173,21 +176,41 @@ export default function LogEntry() {
                 {/* Optional */}
                 <div className="space-y-4">
                   <h3 className="font-semibold text-lg flex items-center gap-2 text-primary">
-                    <Monitor className="w-5 h-5" /> Other
+                    <Monitor className="w-5 h-5" /> Other & Journal
                   </h3>
-                  <FormField
-                    control={form.control}
-                    name="screenTime"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Screen Time (Optional)</FormLabel>
-                        <FormControl>
-                          <Input type="number" step="0.5" placeholder="e.g. 4.5" {...field} className="h-12 rounded-xl" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <div className="grid grid-cols-1 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="screenTime"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Screen Time (Optional)</FormLabel>
+                          <FormControl>
+                            <Input type="number" step="0.5" placeholder="e.g. 4.5" {...field} className="h-12 rounded-xl" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="journalEntry"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Daily Journal</FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              placeholder="How was your day? Any specific stressors or wins?" 
+                              {...field} 
+                              className="min-h-[120px] rounded-xl resize-none" 
+                            />
+                          </FormControl>
+                          <FormDescription>Reflecting on your day can help identify burnout triggers.</FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                 </div>
 
                 <div className="pt-4">

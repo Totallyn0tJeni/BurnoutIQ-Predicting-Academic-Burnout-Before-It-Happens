@@ -4,6 +4,7 @@ import {
   LayoutDashboard, 
   PlusCircle, 
   History, 
+  BookText,
   LogOut, 
   User,
   Activity,
@@ -23,6 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navItems = [
     { href: "/", icon: LayoutDashboard, label: "Dashboard" },
     { href: "/log", icon: PlusCircle, label: "Daily Check-in" },
+    { href: "/journal", icon: BookText, label: "Journal" },
     { href: "/history", icon: History, label: "History" },
   ];
 
